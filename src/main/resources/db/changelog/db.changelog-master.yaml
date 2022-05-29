@@ -1,0 +1,168 @@
+databaseChangeLog:
+- changeSet:
+    id: 1653767998155-1
+    author: Admin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: cities_pkey
+            name: id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR
+        - column:
+            constraints:
+              nullable: false
+            name: population
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: subway_availability
+            type: BOOLEAN
+        - column:
+            constraints:
+              nullable: false
+            name: country
+            type: VARCHAR
+        tableName: cities
+- changeSet:
+    id: 1653767998155-2
+    author: Admin (generated)
+    changes:
+    - loadData:
+        columns:
+        - column:
+            header: name
+            name: name
+            type: STRING
+        - column:
+            header: population
+            name: population
+            type: NUMERIC
+        - column:
+            header: subway_availability
+            name: subway_availability
+            type: BOOLEAN
+        - column:
+            header: country
+            name: country
+            type: STRING
+        commentLineStartsWith: '#'
+        encoding: UTF-8
+        file: data/cities.csv
+        quotchar: '"'
+        separator: ','
+        tableName: cities
+- changeSet:
+    id: 1653767998155-3
+    author: Admin (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: attractions_pkey
+            name: id
+            type: INTEGER
+        - column:
+            constraints:
+              nullable: false
+            name: name
+            type: VARCHAR
+        - column:
+            constraints:
+              nullable: false
+            name: construction_date
+            type: date
+        - column:
+            constraints:
+              nullable: false
+            name: description
+            type: VARCHAR
+        - column:
+            constraints:
+              nullable: false
+            name: type
+            type: VARCHAR
+        - column:
+            constraints:
+              nullable: false
+            name: city_id
+            type: INTEGER
+        tableName: attractions
+- changeSet:
+    id: 1653767998155-4
+    author: Admin (generated)
+    changes:
+    - loadData:
+        columns:
+        - column:
+            header: name
+            name: name
+            type: STRING
+        - column:
+            header: construction_date
+            name: construction_date
+            type: DATE
+        - column:
+            header: description
+            name: description
+            type: STRING
+        - column:
+            header: type
+            name: type
+            type: STRING
+        - column:
+            header: city_id
+            name: city_id
+            type: NUMERIC
+        commentLineStartsWith: '#'
+        encoding: UTF-8
+        file: data/attractions.csv
+        quotchar: '"'
+        separator: ';'
+        tableName: attractions
+- changeSet:
+    id: 1653767998155-5
+    author: Admin (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: name, country
+        constraintName: name_country_unique_idx
+        tableName: cities
+- changeSet:
+    id: 1653767998155-6
+    author: Admin (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: name, city_id
+        constraintName: name_city_id_unique_idx
+        tableName: attractions
+- changeSet:
+    id: 1653767998155-7
+    author: Admin (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: city_id
+        baseTableName: attractions
+        constraintName: attractions_city_id_fkey
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: CASCADE
+        onUpdate: NO ACTION
+        referencedColumnNames: id
+        referencedTableName: cities
+        validate: true
+
