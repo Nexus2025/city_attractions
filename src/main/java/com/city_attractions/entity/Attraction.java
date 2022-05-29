@@ -1,7 +1,5 @@
 package com.city_attractions.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -34,7 +32,6 @@ public class Attraction {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "city_id")
-    @JsonIgnore
     private City city;
 
     public Attraction() {

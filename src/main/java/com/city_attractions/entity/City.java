@@ -1,7 +1,5 @@
 package com.city_attractions.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -32,7 +30,6 @@ public class City {
     private String country;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "city")
-    @JsonIgnore
     private List<Attraction> attractions;
 
     public City() {
